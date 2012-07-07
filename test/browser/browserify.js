@@ -5572,7 +5572,7 @@ require.define("/lib/object.js", function (require, module, exports, __dirname, 
       while (i < len) {
         sc = schema[i];
         path = new objectPath(ob, sc[0]);
-        if (path.exists()) {
+        if (fs.exists()) {
           path.set(sc[1].value(path.get()).value());
         } else {
           default_ = sc[1].value(null).value();
@@ -5609,7 +5609,7 @@ require.define("/lib/object.js", function (require, module, exports, __dirname, 
         sc = schema[completed];
         path = new objectPath(ob, sc[0]);
         if (ob === null) return next();
-        if (ignoreUndefined && !path.exists()) return next();
+        if (ignoreUndefined && !fs.exists()) return next();
         return sc[1].context(ob).validate((function(err) {
           if (err) _errors.on(sc[0], err);
           return next();
